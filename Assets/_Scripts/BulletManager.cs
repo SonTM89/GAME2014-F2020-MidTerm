@@ -1,4 +1,18 @@
-﻿using System.Collections;
+﻿/*--------------------------------------------------------------
+// PlayerController.cs
+//
+// Making a pool which will publish and recall all bullets
+//
+// Created by Tran Minh Son on Oct 22 2020
+// StudentID: 101137552
+// Date last Modified: Oct 23 2020
+// Rev: 1.1
+//  
+// Copyright © 2020 Tran Minh Son. All rights reserved.
+--------------------------------------------------------------*/
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,6 +31,7 @@ public class BulletManager : MonoBehaviour
         _BuildBulletPool();
     }
 
+    // Create bullets to fill up the pool
     private void _BuildBulletPool()
     {
         // create empty Queue structure
@@ -29,6 +44,7 @@ public class BulletManager : MonoBehaviour
         }
     }
 
+    // Get bullet from pool and activate it
     public GameObject GetBullet(Vector3 position)
     {
         var newBullet = m_bulletPool.Dequeue();
@@ -37,11 +53,13 @@ public class BulletManager : MonoBehaviour
         return newBullet;
     }
 
+    // Check available bullets in pool
     public bool HasBullets()
     {
         return m_bulletPool.Count > 0;
     }
 
+    // Recall the bullet went off the screen
     public void ReturnBullet(GameObject returnedBullet)
     {
         returnedBullet.SetActive(false);

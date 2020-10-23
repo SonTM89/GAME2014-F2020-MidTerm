@@ -1,4 +1,18 @@
-﻿using System.Collections;
+﻿/*--------------------------------------------------------------
+// PlayerController.cs
+//
+// Handle player behaviours like moving, firing, etc.
+//
+// Created by Tran Minh Son on Oct 22 2020
+// StudentID: 101137552
+// Date last Modified: Oct 23 2020
+// Rev: 1.1
+//  
+// Copyright © 2020 Tran Minh Son. All rights reserved.
+--------------------------------------------------------------*/
+
+
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEditor;
@@ -38,6 +52,7 @@ public class PlayerController : MonoBehaviour
         _FireBullet();
     }
 
+    // Handle firing bullets
      private void _FireBullet()
     {
         // delay bullet firing 
@@ -47,6 +62,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Can control player movement with both touch input and keyboard
+    // Player can only move up and down as well as not move off screen
     private void _Move()
     {
         float direction = 0.0f;
@@ -97,6 +114,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Not allow player to move out of top and bottom boundary
     private void _CheckBounds()
     {
         // check right bounds

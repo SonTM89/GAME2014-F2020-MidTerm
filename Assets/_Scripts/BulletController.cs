@@ -1,4 +1,18 @@
-﻿using System.Collections;
+﻿/*--------------------------------------------------------------
+// BulletController.cs
+//
+// Handle Bullets movement
+//
+// Created by Tran Minh Son on Oct 22 2020
+// StudentID: 101137552
+// Date last Modified: Oct 23 2020
+// Rev: 1.1
+//  
+// Copyright © 2020 Tran Minh Son. All rights reserved.
+--------------------------------------------------------------*/
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,11 +36,13 @@ public class BulletController : MonoBehaviour, IApplyDamage
         _CheckBounds();
     }
 
+    // Moving bullet from left to right
     private void _Move()
     {
         transform.position += new Vector3(0.0f, verticalSpeed, 0.0f) * Time.deltaTime;
     }
 
+    // Return bullets to the pool if they went off the screen
     private void _CheckBounds()
     {
         if (transform.position.y > verticalBoundary)
@@ -35,12 +51,14 @@ public class BulletController : MonoBehaviour, IApplyDamage
         }
     }
 
+    // Return bullets to the pool if they collide with enemies
     public void OnTriggerEnter2D(Collider2D other)
     {
         //Debug.Log(other.gameObject.name);
         bulletManager.ReturnBullet(gameObject);
     }
 
+    // Apply damage to enemies
     public int ApplyDamage()
     {
         return damage;
