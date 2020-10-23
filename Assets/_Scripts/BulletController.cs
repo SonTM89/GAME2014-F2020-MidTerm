@@ -18,8 +18,8 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour, IApplyDamage
 {
-    public float verticalSpeed;
-    public float verticalBoundary;
+    public float horizontalSpeed;
+    public float horizontalBoundary;
     public BulletManager bulletManager;
     public int damage;
     
@@ -39,13 +39,13 @@ public class BulletController : MonoBehaviour, IApplyDamage
     // Moving bullet from left to right
     private void _Move()
     {
-        transform.position += new Vector3(0.0f, verticalSpeed, 0.0f) * Time.deltaTime;
+        transform.position += new Vector3(horizontalSpeed, 0.0f, 0.0f) * Time.deltaTime;
     }
 
     // Return bullets to the pool if they went off the screen
     private void _CheckBounds()
     {
-        if (transform.position.y > verticalBoundary)
+        if (transform.position.x > horizontalBoundary)
         {
             bulletManager.ReturnBullet(gameObject);
         }
